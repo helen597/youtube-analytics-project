@@ -1,28 +1,27 @@
 import pytest
 from src.channel import Channel
-from src.channel import printj
+# from src.channel import printj
+
 
 @pytest.fixture
-
-
 def channel1():
     return Channel('UC-OVMPlMA3-YCIeg4z5z23A')
+
+
 @pytest.fixture
-
-
 def channel2():
     return Channel('UC-b89a0Fw6pNoP-g-_qLeiw')
+
+
 @pytest.fixture
-
-
 def dict1():
     return r'''{
-  "kind": "youtube#channelListResponse",
-  "etag": "tBDRT3nNevoPM5PpFtMU0Ky1HKs",
-  "pageInfo": {
+    "kind": "youtube#channelListResponse",
+    "etag": "tBDRT3nNevoPM5PpFtMU0Ky1HKs",
+    "pageInfo": {
     "totalResults": 1,
     "resultsPerPage": 5
-  },
+    },
   "items": [
     {
       "kind": "youtube#channel",
@@ -66,14 +65,22 @@ def dict1():
   ]
 }'''
 
+
 def test_channel_init(channel1):
     assert channel1.channel_id == "UC-OVMPlMA3-YCIeg4z5z23A"
+
 
 def test_channel_init(channel2):
     assert channel2.channel_id == "UC-b89a0Fw6pNoP-g-_qLeiw"
 
-def test_printj(dict1):
-    assert printj(dict1) == None
+
+def test_channel_printj(dict1):
+    assert Channel.printj(dict1) == None
+
 
 def test_channel_print_info(channel1):
     assert channel1.print_info() == None
+
+
+def test_channel_to_json(channel1):
+    assert channel1.to_json('channel1.json') == None
