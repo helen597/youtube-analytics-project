@@ -3,17 +3,6 @@ import os
 from googleapiclient.discovery import build
 
 
-# __api_key: str = os.getenv('YT_API_KEY')
-
-# создать специальный объект для работы с API
-# youtube = build('youtube', 'v3', developerKey=__api_key)
-
-
-# def printj(dict_to_print: dict) -> None:
-#     """Выводит словарь в json-подобном удобном формате с отступами"""
-#     print(json.dumps(dict_to_print, indent=2, ensure_ascii=False))
-
-
 class Channel:
     """Класс для ютуб-канала"""
     __api_key: str = os.getenv('YT_API_KEY')
@@ -44,19 +33,6 @@ class Channel:
         """Создает специальный объект для работы с API"""
         youtube = build('youtube', 'v3', developerKey=cls.__api_key)
         return youtube
-
-
-    # @property
-    # def title(self):
-    #     return self.__title
-    #
-    #
-    # @title.setter
-    # def title(self, value):
-    #     channel = youtube.channels().list(id=self.channel_id,
-    #                                       part='snippet,statistics').execute()
-    #     print(channel['items'][0]["snippet"]['title'])
-    #     self.__title = channel['items'][0]["snippet"]['title']
 
 
     def print_info(self) -> None:
