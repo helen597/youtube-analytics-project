@@ -84,3 +84,28 @@ def test_channel_print_info(channel1):
 
 def test_channel_to_json(channel1):
     assert channel1.to_json('channel1.json') == None
+
+
+def test_channel_str(channel1, channel2):
+    assert str(channel1) == "MoscowPython(https://www.youtube.com/channel/UC-OVMPlMA3-YCIeg4z5z23A)"
+    assert str(channel2) == "sndk(https://www.youtube.com/channel/UC-b89a0Fw6pNoP-g-_qLeiw)"
+
+
+def test_channel_add(channel1, channel2):
+    assert channel1.subscriber_count == 26800
+    assert channel2.subscriber_count == 7680000
+    assert channel1.subscriber_count + channel2. subscriber_count == 7706800
+    assert channel1 + channel2 == 7706800
+
+
+def test_channel_sub(channel1, channel2):
+    assert channel1 - channel2 == -7653200
+    assert channel2 - channel1 == 7653200
+
+
+def test_channel_compare(channel1, channel2):
+    assert (channel1 < channel2) == True
+    assert (channel1 <= channel2) == True
+    assert (channel1 > channel2) == False
+    assert (channel1 >= channel2) == False
+    assert (channel1 == channel2) == False

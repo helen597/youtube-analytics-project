@@ -2,7 +2,7 @@ from src.channel import Channel
 
 if __name__ == '__main__':
     moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
-    moscowpython.print_info()
+    # moscowpython.print_info()
 
     """
 {
@@ -56,17 +56,15 @@ if __name__ == '__main__':
 }
 
     """
-    print(moscowpython.title)
-    print(moscowpython.video_count)  # 685 (может уже больше)
-    print(moscowpython.url)  # https://www.youtube.com/channel/UC-OVMPlMA3-YCIeg4z5z23A
+    highload = Channel('UCwHL6WHUarjGfUM_586me8w')
 
-    # менять не можем
-    # moscowpython.channel_id = 'Новое название'
-    # AttributeError: property 'channel_id' of 'Channel' object has no setter
-
-    # можем получить объект для работы с API вне класса
-    # print(Channel.get_service())
-    # <googleapiclient.discovery.Resource object at 0x000002B1E54F9750>
-
-    # создаем файл 'moscowpython.json' в данными по каналу
-    moscowpython.to_json('moscowpython.json')
+    # Используем различные магические методы
+    print(moscowpython)  # 'MoscowPython (https://www.youtube.com/channel/UC-OVMPlMA3-YCIeg4z5z23A)'
+    print(moscowpython + highload)  # 100100
+    print(moscowpython - highload)  # -48300
+    print(highload - moscowpython)  # 48300
+    print(moscowpython > highload)  # False
+    print(moscowpython >= highload)  # False
+    print(moscowpython < highload)  # True
+    print(moscowpython <= highload)  # True
+    print(moscowpython == highload)  # False
