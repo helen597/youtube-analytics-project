@@ -76,6 +76,7 @@ class Channel:
 
 
     def to_json(self, path) -> None:
+        """Сохраняет в файл json информацию о канале"""
         new_dict = dict([('channel_id', self.__channel_id),
                          ('title', self.title),
                          ('description', self.description),

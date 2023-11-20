@@ -1,6 +1,5 @@
 import pytest
 from src.channel import Channel
-# from src.channel import printj
 
 
 @pytest.fixture
