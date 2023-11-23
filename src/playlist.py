@@ -4,8 +4,13 @@ import isodate
 
 
 class PlayList(Channel):
+    """Класс для плейлиста"""
 
     def __init__(self, playlist_id):
+        """
+        Инициализация экземпляра класса
+        param playlist_id: ID плейлиста
+        """
         self.__playlist_id = playlist_id
         youtube = self.get_service()
         playlist_response = youtube.playlists().list(id=playlist_id, part='snippet,contentDetails',
@@ -24,12 +29,11 @@ class PlayList(Channel):
     #     self.__total_duration = duration
 
     def count_duration(self):
-        """Вывод длительности видеороликов из плейлиста"""
+        """Подсчёт длительности видеороликов из плейлиста"""
         youtube = self.get_service()
         playlist_videos = youtube.playlistItems().list(playlistId=self.__playlist_id,
                                                        part='snippet,contentDetails',
                                                        maxResults=50).execute()
-        # self.printj(playlist_videos)
         video_ids: list[str] = [video['contentDetails']['videoId'] for video in playlist_videos['items']]
 
         video_response = youtube.videos().list(part='contentDetails,statistics',
@@ -42,6 +46,9 @@ class PlayList(Channel):
             self.__total_duration += duration
 
     def show_best_video(self):
+        """
+        Возвращает ссылку на самое популярное видео из плейлиста (по количеству лайков)
+        """
         youtube = self.get_service()
         playlist_videos = youtube.playlistItems().list(playlistId=self.__playlist_id,
                                                        part='snippet,contentDetails',
