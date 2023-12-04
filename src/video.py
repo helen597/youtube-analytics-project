@@ -7,14 +7,21 @@ class Video(Channel):
 
 
     def __init__(self, video_id):
-        self.__video_id = video_id
-        youtube = self.get_service()
-        video_response = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
-                                               id=video_id).execute()
-        self.title = video_response['items'][0]['snippet']['title']
-        self.url = "https://www.youtube.com/watch?v=" + str(self.__video_id)
-        self.like_count = int(video_response['items'][0]['statistics']['likeCount'])
-        self.view_count = int(video_response['items'][0]['statistics']['viewCount'])
+        try:
+            self.__video_id = video_id
+            youtube = self.get_service()
+            video_response = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
+                                                   id=video_id).execute()
+            self.title = video_response['items'][0]['snippet']['title']
+            self.url = "https://www.youtube.com/watch?v=" + str(self.__video_id)
+            self.like_count = int(video_response['items'][0]['statistics']['likeCount'])
+            self.view_count = int(video_response['items'][0]['statistics']['viewCount'])
+        except IndexError:
+            print("Видео с таким id не найдено")
+            self.title = None
+            self.url = None
+            self.like_count = None
+            self.view_count = None
 
 
     @property
